@@ -1,0 +1,37 @@
+<div class="card-deck m-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="media">
+                    <img src={{col.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
+                    <div class="media-body">
+
+                        <dt class="card-text">Matricule</dt>
+                        <dd class="card-text">{{col.matricule}}</dd>
+
+                        <dt class="card-text">Nom</dt>
+                        <dd class="card-text">{{col.nom}}</dd>
+
+                        <dt class="card-text">Prénom</dt>
+                        <dd class="card-text">{{col.prenom}}</dd>
+
+                        <dt class="card-text">Email</dt>
+                        <dd class="card-text">{{col.email}</dd>
+
+                        <dt class="card-text">Date de naissance</dt>
+                        <dd class="card-text">{{col.dateDeNaissance.toDateString()}}</dd>
+
+                        <dt class="card-text">Photo Url</dt>
+                        <dd class="card-text">{{col.photoUrl}}</dd>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a  href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+            </div>
+            <div class="text-right"> 
+                <button class="btn btn-dark" (click)="modifier()">Modifier</button>
+            </div>
+        </div>
+    </div>
+</div>
