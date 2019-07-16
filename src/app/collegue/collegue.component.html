@@ -1,36 +1,75 @@
-<div class="card-deck m-5">
-    <div class="card">
-        <div class="card-body">
-            <div class="container">
-                <div class="media">
-                    <img src={{col.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
-                    <div class="media-body">
+<div class="container-row">
+    <div class="col- ml-2">
+        <div class="card-deck m-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="media">
+                            <img src={{col.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
+                            <div class="media-body">
 
-                        <dt class="card-text">Matricule</dt>
-                        <dd class="card-text">{{col.matricule}}</dd>
+                                <dt class="card-text">Matricule</dt>
+                                <dd class="card-text">{{col.matricule}}</dd>
 
-                        <dt class="card-text">Nom</dt>
-                        <dd class="card-text">{{col.nom}}</dd>
+                                <dt class="card-text">Nom</dt>
+                                <dd class="card-text">{{col.nom | uppercase}}</dd>
 
-                        <dt class="card-text">Prénom</dt>
-                        <dd class="card-text">{{col.prenom}}</dd>
+                                <dt class="card-text">Prénom</dt>
+                                <dd class="card-text">{{col.prenom}}</dd>
 
-                        <dt class="card-text">Email</dt>
-                        <dd class="card-text">{{col.email}}</dd>
+                                <dt class="card-text">Date de naissance</dt>
+                                <dd class="card-text">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
 
-                        <dt class="card-text">Date de naissance</dt>
-                        <dd class="card-text">{{col.dateDeNaissance.toDateString()}}</dd>
+                                <div *ngIf="isAvailable; then update else read"></div>
 
-                        <dt class="card-text">Photo Url</dt>
-                        <dd class="card-text">{{col.photoUrl}}</dd>
+                                <ng-template #update>
+                                    <dt class="card-text">Email</dt>
+                                    <dd class="card-text">
+                                        <input type="text" name="email" #saisieTexte>
+                                    </dd>
+                                    <dt class="card-text">Photo</dt>
+                                    <dd class="card-text">
+                                        <input type="text" name="photoUrl" #saisieTexte>
+                                    </dd>
+                                </ng-template>
+
+                                <ng-template #read>
+                                    <dt class="card-text">Email</dt>
+                                    <dd class="card-text">{{col.email}}</dd>
+                                </ng-template>
+
+                            </div>
+                        </div>
                     </div>
+
+                    <div *ngIf="isAvailable; then updateLink else readLink"></div>
+                    <ng-template #updateLink>
+                        <div class="text-center">
+                            <a hidden href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                        </div>
+                    </ng-template>
+                    <ng-template #readLink>
+                        <div class="text-center">
+                            <a href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                        </div>
+                    </ng-template>
+
+                    <div *ngIf="isAvailable; then updateButton else readButton"></div>
+
+                    <ng-template #updateButton>
+                        <div class="text-right">
+                            <button hidden class="btn btn-dark" (click)="modifier()">Modifier</button>
+                            <button class="btn btn-dark" (click)="valider()">Valider</button>
+                        </div>
+                    </ng-template>
+
+                    <ng-template #readButton>
+                        <div class="text-right">
+                            <button class="btn btn-dark" (click)="modifier()">Modifier</button>
+                        </div>
+                    </ng-template>
+
                 </div>
-            </div>
-            <div class="text-center">
-                <a  href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
-            </div>
-            <div class="text-right"> 
-                <button class="btn btn-dark" (click)="modifier()">Modifier</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,19 @@
+<div class="row m-2">
+    <div class="col-4 col-sm-4 col-md-6">
+        <form>
+            <label>Rechercher par nom : </label>
+            <input type="search" #nomSaisi/>
+            <button type="button" class="btn btn-primary" (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
+        </form>
+    </div>
+</div>
+<!--Liste des matricules-->
+<div class="row m-2">
+    <div class="col-4 col-sm-4 col-md-6">
+        <ul class="list-group list-group-flush">
+            <div *ngIf="matricules != null">
+                <li class="list-group-item" *ngFor="let mat of matricules">{{mat.matricule}}</li>
+            </div>
+        </ul>
+    </div>
+</div>
