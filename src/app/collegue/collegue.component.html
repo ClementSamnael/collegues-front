@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="media">
-                            <img src={{collegue.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
+                            <img src={{collegue.photoUrl}} class="align-self-center mr-3">
                             <div class="media-body">
 
                                 <dt class="card-text">Matricule</dt>
@@ -25,7 +25,7 @@
                                 <ng-template #update>
                                     <dt class="card-text">Email</dt>
                                     <dd class="card-text">
-                                        <input type="text" name="email" #saisieTexte>
+                                        <input type="text" name="email" placeholder="{{collegue.email}}" #saisieTexte>
                                     </dd>
                                     <dt class="card-text">Photo</dt>
                                     <dd class="card-text">
