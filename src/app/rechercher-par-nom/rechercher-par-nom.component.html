@@ -3,18 +3,28 @@
         <form>
             <label>Rechercher par nom : </label>
             <input type="search" #nomSaisi />
-            <button type="button" class="btn btn-primary" (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
+            <button type="button" class="btn btn-dark" (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
         </form>
     </div>
 </div>
 <!--Liste des matricules-->
 <div class="row m-2">
     <div class="col-4 col-sm-4 col-md-6">
-        <ul class="list-group list-group-flush">
+        <div class="list-group list-group-flush">
             <div *ngIf="matricules != null">
-                <li class="list-group-item list-group-item-action list-group-item-dark" *ngFor="let mat of matricules" (click)="selectionnerCollegue(mat)" >
-                    {{mat}}</li>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-dark"
+                    *ngFor="let mat of matricules" (click)="selectionnerCollegue(mat)">
+                    {{mat}}</a>
             </div>
-        </ul>
+            <div *ngIf="errorCollegue">
+                <div class="alert alert-danger" role="alert">Collègue non trouvé</div>
+            </div>
+            <div *ngIf="errorMatricule">
+                <div class="alert alert-danger" role="alert">Matricule invalide</div>
+            </div>
+            <div *ngIf="error500">
+                <div class="alert alert-danger" role="alert">Problème Serveur</div>
+            </div>
+        </div>
     </div>
 </div>

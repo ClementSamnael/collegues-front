@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../Services/data.service';
-import { Collegue } from '../model/Collegue';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-rechercher-par-nom',
@@ -13,6 +13,10 @@ export class RechercherParNomComponent implements OnInit {
   constructor(private _dataSvc: DataService) {
   }
 
+  errorMatricule: boolean = false;
+  errorCollegue: boolean = false;
+  error500: boolean = false;
+
   ngOnInit() {
   }
 
@@ -20,7 +24,16 @@ export class RechercherParNomComponent implements OnInit {
     this._dataSvc.rechercherParNom(nom).
       subscribe(
         matriculesServeur => {
-          (this.matricules = matriculesServeur)
+          this.matricules = matriculesServeur;
+          if (this.matricules != null && this.matricules.length > 0) {
+            this.errorCollegue = false;
+            this.error500 = false;
+          } else {
+            this.errorCollegue = true;
+          }
+        }, (error: HttpErrorResponse) => {
+          this.errorCollegue = true;
+          this.error500 = true;
         });
   }
 
@@ -28,7 +41,14 @@ export class RechercherParNomComponent implements OnInit {
     this._dataSvc.rechercherCollegueParMatricule(matricule).
       subscribe(
         collegue => {
-          (this._dataSvc.publierCollegue(collegue))
+          this._dataSvc.publierCollegue(collegue)
+          if (this.matricules != null && this.matricules.length > 0) {
+            this.errorMatricule = false;
+          } else {
+            this.errorMatricule = true;
+          }
+        }, (error: HttpErrorResponse) => {
+          this.errorMatricule = true;
         });
   }
 }

@@ -68,7 +68,12 @@
                             <button class="btn btn-dark" (click)="modifier()">Modifier</button>
                         </div>
                     </ng-template>
-
+                    <div *ngIf="errorServer then alert"></div>
+                    <ng-template #alert>
+                        <div class="alert alert-danger" role="alert">
+                            <label>Erreur de type 500</label>
+                          </div>
+                    </ng-template>
                 </div>
             </div>
         </div>

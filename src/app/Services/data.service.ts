@@ -32,7 +32,7 @@ export class DataService {
     return this.httpClient.get<string[]>(`${URL_BACKEND}collegues/?nomCollegue=${nom}`);
   }
 
-  rechercherCollegueParMatricule(matricule:string):Observable<Collegue>{
+  rechercherCollegueParMatricule(matricule: string): Observable<Collegue> {
     return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`);
   }
 
