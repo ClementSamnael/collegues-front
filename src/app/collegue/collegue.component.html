@@ -1,5 +1,5 @@
 <div class="container-row">
-    <div class="col- ml-2">
+    <div class="col-12">
         <div class="card-deck m-3">
             <div class="card">
                 <div class="card-body">
@@ -67,12 +67,6 @@
                         <div class="text-right">
                             <button class="btn btn-dark" (click)="modifier()">Modifier</button>
                         </div>
-                    </ng-template>
-                    <div *ngIf="errorServer then alert"></div>
-                    <ng-template #alert>
-                        <div class="alert alert-danger" role="alert">
-                            <label>Erreur de type 500</label>
-                          </div>
                     </ng-template>
                 </div>
             </div>

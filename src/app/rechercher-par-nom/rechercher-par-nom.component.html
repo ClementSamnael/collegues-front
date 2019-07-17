@@ -1,15 +1,15 @@
 <div class="row m-2">
-    <div class="col-4 col-sm-4 col-md-6">
+    <div class="col-6">
         <form>
             <label>Rechercher par nom : </label>
             <input type="search" #nomSaisi />
-            <button type="button" class="btn btn-dark" (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
+            <button type="button" class="btn btn-dark " (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
         </form>
     </div>
 </div>
 <!--Liste des matricules-->
 <div class="row m-2">
-    <div class="col-4 col-sm-4 col-md-6">
+    <div class="col-6">
         <div class="list-group list-group-flush">
             <div *ngIf="matricules != null">
                 <a href="#" class="list-group-item list-group-item-action list-group-item-dark"
