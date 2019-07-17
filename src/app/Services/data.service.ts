@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Collegue } from '../model/Collegue';
-import { tabMatri } from '../mock/matricules.mock';
-import { unCollegue } from '../mock/Collegue.mock';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -40,6 +38,6 @@ export class DataService {
 
   recupererCollegueCourant(): Collegue {
     // TODO retourner le collègue fictif à partir du fichier `src/app/mock/collegues.mock.ts`.
-    return unCollegue;
+    return null;
   }
 }
