@@ -5,20 +5,20 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="media">
-                            <img src={{col.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
+                            <img src={{collegue.photoUrl}} class="align-self-center mr-3" alt="photoUrl">
                             <div class="media-body">
 
                                 <dt class="card-text">Matricule</dt>
-                                <dd class="card-text">{{col.matricule}}</dd>
+                                <dd class="card-text">{{collegue.matricule}}</dd>
 
                                 <dt class="card-text">Nom</dt>
-                                <dd class="card-text">{{col.nom | uppercase}}</dd>
+                                <dd class="card-text">{{collegue.nom | uppercase}}</dd>
 
                                 <dt class="card-text">Prénom</dt>
-                                <dd class="card-text">{{col.prenom}}</dd>
+                                <dd class="card-text">{{collegue.prenom}}</dd>
 
                                 <dt class="card-text">Date de naissance</dt>
-                                <dd class="card-text">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
+                                <dd class="card-text">{{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
 
                                 <div *ngIf="isAvailable; then update else read"></div>
 
@@ -35,7 +35,7 @@
 
                                 <ng-template #read>
                                     <dt class="card-text">Email</dt>
-                                    <dd class="card-text">{{col.email}}</dd>
+                                    <dd class="card-text">{{collegue.email}}</dd>
                                 </ng-template>
 
                             </div>

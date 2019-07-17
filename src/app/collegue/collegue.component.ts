@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../model/Collegue';
+import { DataService } from '../Services/data.service';
 
 @Component({
   selector: 'app-collegue',
@@ -8,16 +9,18 @@ import { Collegue } from '../model/Collegue';
 
 export class CollegueComponent implements OnInit {
 
-  @Input() public col: Collegue;
-
-  @Output() texteSaisieEvt: EventEmitter<string> = new EventEmitter();
+  collegue: Collegue;
 
   isAvailable: boolean = false;
 
-  constructor() {
+  constructor(private _dataSvc: DataService) {
+    this.collegue = _dataSvc.recupererCollegueCourant();
   }
 
   ngOnInit() {
+    this._dataSvc
+      .abonnementCollegue()
+      .subscribe(colSelect => (this.collegue = colSelect));
   }
 
   modifier() {
@@ -29,11 +32,7 @@ export class CollegueComponent implements OnInit {
     console.log('Ajouter un collègue');
   }
 
-  valider(saisieTexte: HTMLInputElement) {
-    this.texteSaisieEvt.emit(saisieTexte.value);
-    saisieTexte.value = '';
-    saisieTexte.focus();
+  valider() {
+    this.isAvailable = false;
   }
-
-
 }
