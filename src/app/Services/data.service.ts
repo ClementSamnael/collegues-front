@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Collegue } from '../model/Collegue';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 const URL_BACKEND = environment.backendUrl;
 
