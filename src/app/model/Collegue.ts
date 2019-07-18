@@ -3,7 +3,7 @@ export class Collegue{
 
     public matricule:string;
     public nom:string;
-    public  prenom:string;
+    public prenom:string;
     public email:string;
     public dateDeNaissance:Date;
     public photoUrl:string;
@@ -16,5 +16,13 @@ export class Collegue{
         this.dateDeNaissance = _dateDeNaissance;
         this.photoUrl = _photoUrl;
     }
-
 }
+
+    export class UpdateCollegue{
+        constructor(public matricule:string, public email:string, public photoUrl:string){
+            this.matricule;
+            this.email;
+            this.photoUrl;
+        }
+    }
+

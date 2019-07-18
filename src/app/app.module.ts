@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
 import { RechercherParNomComponent } from './rechercher-par-nom/rechercher-par-nom.component';
-
+import  { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { RechercherParNomComponent } from './rechercher-par-nom/rechercher-par-n
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

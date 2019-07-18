@@ -34,6 +34,9 @@ export class DataService {
     return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`);
   }
 
+  modifierCollegue(collegue:Collegue): Observable<Collegue> {
+    return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule }`, collegue);
+  }
 
 
   recupererCollegueCourant(): Collegue {

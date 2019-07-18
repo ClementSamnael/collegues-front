@@ -20,23 +20,34 @@
                                 <dt class="card-text">Date de naissance</dt>
                                 <dd class="card-text">{{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
 
-                                <div *ngIf="isAvailable; then update else read"></div>
-
-                                <ng-template #update>
-                                    <dt class="card-text">Email</dt>
-                                    <dd class="card-text">
-                                        <input type="text" name="email" #saisieTexte>
-                                    </dd>
-                                    <dt class="card-text">Photo</dt>
-                                    <dd class="card-text">
-                                        <input type="text" name="photoUrl" #saisieTexte>
-                                    </dd>
-                                </ng-template>
-
-                                <ng-template #read>
-                                    <dt class="card-text">Email</dt>
-                                    <dd class="card-text">{{collegue.email}}</dd>
-                                </ng-template>
+                                <form #formValid="ngForm">
+                                    <div *ngIf="isAvailable; then update else read"></div>
+                                    <ng-template #update>
+                                        <div>
+                                            <dt class="card-text">Email</dt>
+                                            <dd class="card-text">
+                                                <input type="text" [(ngModel)]="collegue.email" name="email"
+                                                    aria-describedby="emailHelp" #saisieTexte #email="ngModel" required>
+                                                <div *ngIf="(email.dirty || email.touched) && email.invalid">
+                                                    <small id="emailHelp">Email invalide ou manquant</small>
+                                                </div>
+                                            </dd>
+                                        </div>
+                                        <dt class="card-text">URL de la Photo</dt>
+                                        <dd class="card-text">
+                                            <input type="text" [(ngModel)]="collegue.photoUrl" name="photoUrl"
+                                                aria-describedby="phtoUrlHelp" #saisieTexte required minlength="7"
+                                                #photoUrl="ngModel">
+                                            <div *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
+                                                <small id="phtoUrlHelp">URL de la photo invalide ou manquant</small>
+                                            </div>
+                                        </dd>
+                                    </ng-template>
+                                    <ng-template #read>
+                                        <dt class="card-text">Email</dt>
+                                        <dd class="card-text">{{collegue.email}}</dd>
+                                    </ng-template>
+                                </form>
 
                             </div>
                         </div>
@@ -55,19 +66,28 @@
                     </ng-template>
 
                     <div *ngIf="isAvailable; then updateButton else readButton"></div>
-
                     <ng-template #updateButton>
                         <div class="text-right">
                             <button hidden class="btn btn-dark" (click)="modifier()">Modifier</button>
-                            <button class="btn btn-dark" (click)="valider()">Valider</button>
+                            <button [disabled]="formValid.invalid" class="btn btn-dark"
+                                (click)="valider()">Valider</button>
+
+                            <p *ngIf="formValid.dirty && formValid.invalid">
+                                <small id="emailRequired" class="form-text text-muted">Email obligatoire</small>
+                                <small id="phtoUrlRequired" class="form-text text-muted"> Ou Url de la photo
+                                    obligatoire</small>
+                            </p>
                         </div>
                     </ng-template>
-
+                    <div *ngIf="errorUpdate">
+                        <div class="alert alert-danger" role="alert">Email ou URL de la photo invalide</div>
+                    </div>
                     <ng-template #readButton>
                         <div class="text-right">
                             <button class="btn btn-dark" (click)="modifier()">Modifier</button>
                         </div>
                     </ng-template>
+
                 </div>
             </div>
         </div>
