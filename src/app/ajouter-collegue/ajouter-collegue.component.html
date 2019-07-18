@@ -1,0 +1,70 @@
+<form #formAjoutValid="ngForm">
+    <div class="container-row">
+        <div class="col-12">
+            <div class="card-deck m-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="media">
+                                <img src={{collegue.photoUrl}} class="align-self-center mr-3">
+                                <div class="media-body">
+                                    <dt class="card-text">Nom</dt>
+                                    <dd class="card-text">
+                                        <input type="text" [(ngModel)]="collegue.nom" name="nom"
+                                            aria-describedby="nomHelp" #saisieTexte required #nom="ngModel">
+                                        <div *ngIf="(nom.dirty || nom.touched) && nom.invalid">
+                                            <small id="nomHelp">Nom invalide ou manquant</small>
+                                        </div>
+                                    </dd>
+
+                                    <dt class="card-text">Prénom</dt>
+                                    <dd class="card-text">
+                                        <input type="text" [(ngModel)]="collegue.prenom" name="prenom"
+                                            aria-describedby="prenomHelp" #saisieTexte required #prenom="ngModel">
+                                        <div *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
+                                            <small id="prenomHelp">Prénom invalide ou manquant</small>
+                                        </div>
+                                    </dd>
+
+                                    <dt class="card-text">Date de naissance</dt>
+                                    <dd class="card-text">
+                                        <input type="date" [(ngModel)]="collegue.dateDeNaissance" name="dateDeNaissance"
+                                            aria-describedby="dateDeNaissanceHelp" #saisieTexte required
+                                            #dateDeNaissance="ngModel">
+                                        <div
+                                            *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">
+                                            <small id="dateDeNaissanceHelp">Date de naissance invalide ou
+                                                manquante</small>
+                                        </div>
+                                    </dd>
+
+                                    <dt class="card-text">Email</dt>
+                                    <dd class="card-text">
+                                        <input type="text" [(ngModel)]="collegue.email" name="email"
+                                            aria-describedby="emailHelp" #saisieTexte required #email="ngModel">
+                                        <div *ngIf="(email.dirty || email.touched) && email.invalid">
+                                            <small id="emailHelp">Email invalide ou manquant</small>
+                                        </div>
+                                    </dd>
+
+                                    <dt class="card-text">URL de la Photo</dt>
+                                    <dd class="card-text">
+                                        <input type="text" [(ngModel)]="collegue.photoUrl" name="photoUrl"
+                                            aria-describedby="photoUrlHelp" #saisieTexte required minlength="7"
+                                            #photoUrl="ngModel">
+                                        <div *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
+                                            <small id="photoUrlHelp">URL de la photo invalide ou manquant</small>
+                                        </div>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button [disabled]="formAjoutValid.invalid" class="btn btn-dark" (click)="creer()">Créer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

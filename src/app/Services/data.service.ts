@@ -34,13 +34,11 @@ export class DataService {
     return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`);
   }
 
-  modifierCollegue(collegue:Collegue): Observable<Collegue> {
-    return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule }`, collegue);
+  ajouterCollegue(collegue: Collegue): Observable<Collegue> {
+    return this.httpClient.post<Collegue>(`${URL_BACKEND}collegues`, collegue);
   }
 
-
-  recupererCollegueCourant(): Collegue {
-    // TODO retourner le collègue fictif à partir du fichier `src/app/mock/collegues.mock.ts`.
-    return null;
+  modifierCollegue(collegue: Collegue): Observable<Collegue> {
+    return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule}`, collegue);
   }
 }

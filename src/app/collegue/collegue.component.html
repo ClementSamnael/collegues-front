@@ -36,10 +36,10 @@
                                         <dt class="card-text">URL de la Photo</dt>
                                         <dd class="card-text">
                                             <input type="text" [(ngModel)]="collegue.photoUrl" name="photoUrl"
-                                                aria-describedby="phtoUrlHelp" #saisieTexte required minlength="7"
+                                                aria-describedby="photoUrlHelp" #saisieTexte required minlength="7"
                                                 #photoUrl="ngModel">
                                             <div *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
-                                                <small id="phtoUrlHelp">URL de la photo invalide ou manquant</small>
+                                                <small id="photoUrlHelp">URL de la photo invalide ou manquant</small>
                                             </div>
                                         </dd>
                                     </ng-template>
@@ -55,7 +55,7 @@
 
                     <div *ngIf="isAvailable; then updateLink else readLink"></div>
                     <ng-template #updateLink>
-                        <div class="text-center">
+                        <div class="text-center" >
                             <a hidden href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
                         </div>
                     </ng-template>
@@ -74,7 +74,7 @@
 
                             <p *ngIf="formValid.dirty && formValid.invalid">
                                 <small id="emailRequired" class="form-text text-muted">Email obligatoire</small>
-                                <small id="phtoUrlRequired" class="form-text text-muted"> Ou Url de la photo
+                                <small id="photoUrlRequired" class="form-text text-muted"> Ou Url de la photo
                                     obligatoire</small>
                             </p>
                         </div>

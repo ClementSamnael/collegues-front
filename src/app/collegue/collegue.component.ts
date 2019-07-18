@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Collegue, UpdateCollegue } from '../model/Collegue';
+import { Collegue } from '../model/Collegue';
 import { DataService } from '../Services/data.service';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,8 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class CollegueComponent implements OnInit, OnDestroy {
 
-  collegue: Collegue;
-  colleUpdate:UpdateCollegue;
+  collegue: Collegue = new Collegue();
 
   isAvailable: boolean = false;
   actionSub: Subscription;
@@ -37,18 +36,16 @@ export class CollegueComponent implements OnInit, OnDestroy {
   valider() {
     this._dataSvc.modifierCollegue(this.collegue).subscribe(
       collegueUpdate => {
-        this.colleUpdate.matricule = collegueUpdate.matricule;
-        this.colleUpdate.email = collegueUpdate.email;
-        this.colleUpdate.photoUrl = collegueUpdate.photoUrl;
+        this.collegue.email = collegueUpdate.email;
+        this.collegue.photoUrl = collegueUpdate.photoUrl;
+        this.isAvailable = false;
       }, (error: HttpErrorResponse) => {
         this.errorUpdate = true;
-      }
-    );
-    this.isAvailable = false;
+      });
   }
 
   ajouterCollegue() {
-    console.log('Ajouter un collègue');
+    this.isAvailable = false;
   }
 
   ngOnDestroy() {
