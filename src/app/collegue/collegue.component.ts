@@ -18,6 +18,8 @@ export class CollegueComponent implements OnInit, OnDestroy {
 
   errorUpdate: boolean = false;
 
+  ajoutCol: boolean = false;
+
   constructor(private _dataSvc: DataService) {
   }
 
@@ -46,7 +48,10 @@ export class CollegueComponent implements OnInit, OnDestroy {
 
   ajouterCollegue() {
     this.isAvailable = false;
+    this.ajoutCol = true;
   }
+
+
 
   ngOnDestroy() {
     this.actionSub.unsubscribe();

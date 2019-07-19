@@ -1,95 +1,102 @@
-<div class="container-row">
-    <div class="col-12">
-        <div class="card-deck m-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="container">
-                        <div class="media">
-                            <img src={{collegue.photoUrl}} class="align-self-center mr-3">
-                            <div class="media-body">
+<div *ngIf="ajoutCol == false; else ajoutBlock">
+    <div class="container-row">
+        <div class="col-12">
+            <div class="card-deck m-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="media">
+                                <img src={{collegue.photoUrl}} class="align-self-center mr-3">
+                                <div class="media-body">
 
-                                <dt class="card-text">Matricule</dt>
-                                <dd class="card-text">{{collegue.matricule}}</dd>
+                                    <dt class="card-text">Matricule</dt>
+                                    <dd class="card-text">{{collegue.matricule}}</dd>
 
-                                <dt class="card-text">Nom</dt>
-                                <dd class="card-text">{{collegue.nom | uppercase}}</dd>
+                                    <dt class="card-text">Nom</dt>
+                                    <dd class="card-text">{{collegue.nom | uppercase}}</dd>
 
-                                <dt class="card-text">Prénom</dt>
-                                <dd class="card-text">{{collegue.prenom}}</dd>
+                                    <dt class="card-text">Prénom</dt>
+                                    <dd class="card-text">{{collegue.prenom}}</dd>
 
-                                <dt class="card-text">Date de naissance</dt>
-                                <dd class="card-text">{{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
+                                    <dt class="card-text">Date de naissance</dt>
+                                    <dd class="card-text">{{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
 
-                                <form #formValid="ngForm">
-                                    <div *ngIf="isAvailable; then update else read"></div>
-                                    <ng-template #update>
-                                        <div>
-                                            <dt class="card-text">Email</dt>
+                                    <form #formValid="ngForm">
+                                        <div *ngIf="isAvailable; then update else read"></div>
+                                        <ng-template #update>
+                                            <div>
+                                                <dt class="card-text">Email</dt>
+                                                <dd class="card-text">
+                                                    <input type="text" [(ngModel)]="collegue.email" name="email"
+                                                        aria-describedby="emailHelp" #saisieTexte #email="ngModel"
+                                                        required>
+                                                    <div *ngIf="(email.dirty || email.touched) && email.invalid">
+                                                        <small id="emailHelp">Email invalide ou manquant</small>
+                                                    </div>
+                                                </dd>
+                                            </div>
+                                            <dt class="card-text">URL de la Photo</dt>
                                             <dd class="card-text">
-                                                <input type="text" [(ngModel)]="collegue.email" name="email"
-                                                    aria-describedby="emailHelp" #saisieTexte #email="ngModel" required>
-                                                <div *ngIf="(email.dirty || email.touched) && email.invalid">
-                                                    <small id="emailHelp">Email invalide ou manquant</small>
+                                                <input type="text" [(ngModel)]="collegue.photoUrl" name="photoUrl"
+                                                    aria-describedby="photoUrlHelp" #saisieTexte required minlength="7"
+                                                    #photoUrl="ngModel">
+                                                <div *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
+                                                    <small id="photoUrlHelp">URL de la photo invalide ou
+                                                        manquant</small>
                                                 </div>
                                             </dd>
-                                        </div>
-                                        <dt class="card-text">URL de la Photo</dt>
-                                        <dd class="card-text">
-                                            <input type="text" [(ngModel)]="collegue.photoUrl" name="photoUrl"
-                                                aria-describedby="photoUrlHelp" #saisieTexte required minlength="7"
-                                                #photoUrl="ngModel">
-                                            <div *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
-                                                <small id="photoUrlHelp">URL de la photo invalide ou manquant</small>
-                                            </div>
-                                        </dd>
-                                    </ng-template>
-                                    <ng-template #read>
-                                        <dt class="card-text">Email</dt>
-                                        <dd class="card-text">{{collegue.email}}</dd>
-                                    </ng-template>
-                                </form>
+                                        </ng-template>
+                                        <ng-template #read>
+                                            <dt class="card-text">Email</dt>
+                                            <dd class="card-text">{{collegue.email}}</dd>
+                                        </ng-template>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
+
+                        <div *ngIf="isAvailable; then updateLink else readLink"></div>
+                        <ng-template #updateLink>
+                            <div class="text-center">
+                                <a hidden href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                            </div>
+                        </ng-template>
+                        <ng-template #readLink>
+                            <div class="text-center">
+                                <a href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                            </div>
+                        </ng-template>
+
+                        <div *ngIf="isAvailable; then updateButton else readButton"></div>
+                        <ng-template #updateButton>
+                            <div class="text-right">
+                                <button hidden class="btn btn-dark" (click)="modifier()">Modifier</button>
+                                <button [disabled]="formValid.invalid" class="btn btn-dark"
+                                    (click)="valider()">Valider</button>
+
+                                <p *ngIf="formValid.dirty && formValid.invalid">
+                                    <small id="emailRequired" class="form-text text-muted">Email obligatoire</small>
+                                    <small id="photoUrlRequired" class="form-text text-muted"> Ou Url de la photo
+                                        obligatoire</small>
+                                </p>
+                            </div>
+                        </ng-template>
+                        <div *ngIf="errorUpdate">
+                            <div class="alert alert-danger" role="alert">Email ou URL de la photo invalide</div>
+                        </div>
+                        <ng-template #readButton>
+                            <div class="text-right">
+                                <button class="btn btn-dark" (click)="modifier()">Modifier</button>
+                            </div>
+                        </ng-template>
+
                     </div>
-
-                    <div *ngIf="isAvailable; then updateLink else readLink"></div>
-                    <ng-template #updateLink>
-                        <div class="text-center" >
-                            <a hidden href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
-                        </div>
-                    </ng-template>
-                    <ng-template #readLink>
-                        <div class="text-center">
-                            <a href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
-                        </div>
-                    </ng-template>
-
-                    <div *ngIf="isAvailable; then updateButton else readButton"></div>
-                    <ng-template #updateButton>
-                        <div class="text-right">
-                            <button hidden class="btn btn-dark" (click)="modifier()">Modifier</button>
-                            <button [disabled]="formValid.invalid" class="btn btn-dark"
-                                (click)="valider()">Valider</button>
-
-                            <p *ngIf="formValid.dirty && formValid.invalid">
-                                <small id="emailRequired" class="form-text text-muted">Email obligatoire</small>
-                                <small id="photoUrlRequired" class="form-text text-muted"> Ou Url de la photo
-                                    obligatoire</small>
-                            </p>
-                        </div>
-                    </ng-template>
-                    <div *ngIf="errorUpdate">
-                        <div class="alert alert-danger" role="alert">Email ou URL de la photo invalide</div>
-                    </div>
-                    <ng-template #readButton>
-                        <div class="text-right">
-                            <button class="btn btn-dark" (click)="modifier()">Modifier</button>
-                        </div>
-                    </ng-template>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+<ng-template #ajoutBlock>
+    <app-ajouter-collegue (click)="ajouterCollegue()" ></app-ajouter-collegue>
+</ng-template>

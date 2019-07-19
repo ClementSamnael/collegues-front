@@ -9,4 +9,5 @@ export class AppComponent {
   
   unCollegue = unCollegue;
   title = 'collegues-front';
+  
 }
