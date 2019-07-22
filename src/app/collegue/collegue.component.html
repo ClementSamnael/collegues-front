@@ -1,4 +1,4 @@
-<div *ngIf="ajoutCol == false; else ajoutBlock">
+<div *ngIf="ajoutCol==false; else ajoutBlock">
     <div class="container-row">
         <div class="col-12">
             <div class="card-deck m-3">
@@ -59,13 +59,13 @@
                         <div *ngIf="isAvailable; then updateLink else readLink"></div>
                         <ng-template #updateLink>
                             <div class="text-center">
-                                <a hidden href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                                <a hidden (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
                             </div>
                         </ng-template>
                         <ng-template #readLink>
-                            <div class="text-center">
-                                <a href="#" (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
-                            </div>
+                                <div class="text-center">
+                                    <a (click)="ajouterCollegue()"><u>Créer un nouveau collègue</u></a>
+                                </div>
                         </ng-template>
 
                         <div *ngIf="isAvailable; then updateButton else readButton"></div>
@@ -98,5 +98,5 @@
     </div>
 </div>
 <ng-template #ajoutBlock>
-    <app-ajouter-collegue (click)="ajouterCollegue()" ></app-ajouter-collegue>
+    <app-ajouter-collegue (click)="ajouterCollegue()"></app-ajouter-collegue>
 </ng-template>

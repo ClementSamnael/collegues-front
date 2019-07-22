@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Collegue } from '../model/Collegue';
 import { DataService } from '../Services/data.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,8 +13,9 @@ export class AjouterCollegueComponent implements OnInit {
 
   errorInsertion: boolean = false;
 
-  constructor(private _dataSvc: DataService) {
+  @Output() retour: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  constructor(private _dataSvc: DataService) {
   }
 
   ngOnInit() {
@@ -23,12 +24,12 @@ export class AjouterCollegueComponent implements OnInit {
   creer() {
     this._dataSvc.ajouterCollegue(this.collegue).subscribe(
       collegueAAjouter => {
+        this.retour.emit(true);
         this._dataSvc.ajouterCollegue(collegueAAjouter)
-        console.log(collegueAAjouter.matricule);
       }, (error: HttpErrorResponse) => {
         this.errorInsertion = true;
       });
-      this.collegue = new Collegue();
+    this.collegue = new Collegue();
   }
 
 }

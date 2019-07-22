@@ -51,8 +51,6 @@ export class CollegueComponent implements OnInit, OnDestroy {
     this.ajoutCol = true;
   }
 
-
-
   ngOnDestroy() {
     this.actionSub.unsubscribe();
   }

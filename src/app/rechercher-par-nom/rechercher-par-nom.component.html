@@ -2,7 +2,7 @@
     <div class="col-6">
         <form>
             <label>Rechercher par nom : </label>
-            <input type="search" #nomSaisi placeholder="ex:DURAND ou LEROY"/>
+            <input type="search" #nomSaisi placeholder="ex : DURAND ou LEROY"/>
             <button type="button" class="btn btn-dark " (click)="rechercherParNom(nomSaisi.value)">Recherche</button>
         </form>
     </div>
@@ -12,7 +12,7 @@
     <div class="col-6">
         <div class="list-group list-group-flush">
             <div *ngIf="matricules != null">
-                <a href="#" class="list-group-item list-group-item-action list-group-item-dark"
+                <a class="list-group-item list-group-item-action list-group-item-dark"
                     *ngFor="let mat of matricules" (click)="selectionnerCollegue(mat)">
                     {{mat}}</a>
             </div>

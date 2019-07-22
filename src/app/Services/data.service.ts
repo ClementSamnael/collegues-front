@@ -14,6 +14,7 @@ export class DataService {
 
   matricules: any
   private collegueSelect = new Subject<Collegue>();
+  rechercherCollegueParMatriculeparams: any;
 
   abonnementCollegue(): Observable<Collegue> {
     return this.collegueSelect.asObservable();
@@ -40,5 +41,9 @@ export class DataService {
 
   modifierCollegue(collegue: Collegue): Observable<Collegue> {
     return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule}`, collegue);
+  }
+
+  photosGallerie():Observable<any[]>{
+    return this.httpClient.get<any[]>(`${URL_BACKEND}collegues/photos`);
   }
 }

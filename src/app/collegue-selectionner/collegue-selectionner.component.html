@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <div class="col-12">
+                <img class="img-fluid" src="{{collegue.photoUrl}}">
+            </div>
+            <div class="card-body">
+                <dt class="card-text col-sm-8">Matricule</dt>
+                <dd class="card-text">{{collegue.matricule}}</dd>
+
+                <dt class="card-text col-sm-8">Nom</dt>
+                <dd class="card-text">{{collegue.nom | uppercase}}</dd>
+
+                <dt class="card-text col-sm-8">Prénom</dt>
+                <dd class="card-text">{{collegue.prenom}}</dd>
+
+                <dt class="card-text col-sm-12">Date de naissance</dt>
+                <dd class="card-text">{{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
+
+                <dt class="card-text col-sm-8">Email</dt>
+                <dd class="card-text">{{collegue.email}}</dd>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Gallerie</h1>
+        </div>
+        <div *ngFor="let photo of photos">
+            <a routerLink="{{photo.matricule}}">
+                <img src="{{photo.photoUrl}}">
+            </a>
+        </div>
+    </div>
+</div>
