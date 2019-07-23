@@ -8,7 +8,7 @@
             <label for="password">Mot de passe</label>
             <input type="password" class="form-control" name="password" id="password" [(ngModel)]="motDePasse" required>
         </div>
-        <button [disabled]="loginForm.invalid" class="btn btn-dark" (click)="connexion()">Connexion</button>
+        <button [disabled]="loginForm.invalid" class="btn btn-dark" (click)="connexion(login, motDePasse)">Connexion</button>
     </form>
 </div>
 <div class="row justify-content-center">

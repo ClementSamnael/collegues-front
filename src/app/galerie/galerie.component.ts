@@ -16,8 +16,8 @@ export class GalerieComponent implements OnInit {
 
   ngOnInit() {
     this._dataSvc.photosGallerie()
-    .subscribe(photo => {
-      this.photos = photo;
+    .subscribe(photoCollegue => {
+      this.photos = photoCollegue;
     }),(error:HttpErrorResponse) => {
       this.err = error.status + ' - ' + error.error;
     }
