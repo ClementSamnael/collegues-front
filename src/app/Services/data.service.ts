@@ -3,6 +3,7 @@ import { Collegue } from '../model/Collegue';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Login } from '../model/Login';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -30,7 +31,7 @@ export class DataService {
   rechercherParNom(nom: string): Observable<string[]> {
     return this.httpClient.get<string[]>(`${URL_BACKEND}collegues/?nomCollegue=${nom}`);
   }
-
+ 
   rechercherCollegueParMatricule(matricule: string): Observable<Collegue> {
     return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`);
   }
@@ -46,4 +47,13 @@ export class DataService {
   photosGallerie():Observable<any[]>{
     return this.httpClient.get<any[]>(`${URL_BACKEND}collegues/photos`);
   }
+
+  authentifier(login: string, motDePasse: string): Observable<Login> {
+    return this.httpClient.post<Login>(`${URL_BACKEND}collegues/auth`, { json: true, body:{
+        "login" : login,
+        "motDePasse" : motDePasse
+    } })
+}
+
+
 }

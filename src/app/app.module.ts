@@ -11,18 +11,19 @@ import { RechercherParNomComponent } from './rechercher-par-nom/rechercher-par-n
 import { AjouterCollegueComponent } from './ajouter-collegue/ajouter-collegue.component';
 import { MenuComponent } from './menu/menu.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { GallerieComponent } from './gallerie/gallerie.component';
+import {GalerieComponent } from './galerie/galerie.component';
 import { AproposComponent } from './apropos/apropos.component';
 import { CollegueSelectionnerComponent } from './collegue-selectionner/collegue-selectionner.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 const ROUTES: Routes = [
  
   {path: 'accueil', component:AccueilComponent},
-  {path: 'gallerie', component:GallerieComponent},
+  {path: 'galerie', component:GalerieComponent},
   {path: 'apropos', component:AproposComponent},
-  {path: 'gallerie/:matricule', component:CollegueSelectionnerComponent},
+  {path: 'galerie/:matricule', component:CollegueSelectionnerComponent},
 
-  {path: '', pathMatch: 'full', redirectTo: 'accueil' },
+  {path: '', pathMatch: 'full', redirectTo: 'connexion' },
 
 ];
 
@@ -34,9 +35,10 @@ const ROUTES: Routes = [
     AjouterCollegueComponent,
     MenuComponent,
     AccueilComponent,
-    GallerieComponent,
+    GalerieComponent,
     AproposComponent,
-    CollegueSelectionnerComponent
+    CollegueSelectionnerComponent,
+    ConnexionComponent
   ],
 
   imports: [
