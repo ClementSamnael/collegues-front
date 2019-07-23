@@ -41,7 +41,7 @@ export class ConnexionComponent implements OnInit {
   }
 
 
-  recommer(){
+  recommencer(){
     this.ngOnInit();
   }
 
