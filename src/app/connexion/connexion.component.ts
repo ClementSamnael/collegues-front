@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../Services/data.service';
-import { stringify } from '@angular/compiler/src/util';
+import { AuthService } from '../Services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-connexion',
@@ -8,21 +11,38 @@ import { stringify } from '@angular/compiler/src/util';
 })
 export class ConnexionComponent implements OnInit {
 
-  nonIdentifier: boolean = false;
 
-  constructor(private _dataSvc: DataService) { }
+  login: string;
+  motDePasse: string;
+
+  nonIdentifier: boolean = false;
+  erreur: string;
+  err: boolean = false;
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.nonIdentifier = false;
   }
 
-  nonConnecter() {
-    this.nonIdentifier = !this.nonIdentifier;
-  }
+
 
   connexion(login: string, motDePasse: string) {
-    this._dataSvc.authentifier(login, motDePasse)
-      .subscribe(() => this.nonIdentifier = true);
+    this.authService.authentifier(this.login, this.motDePasse)
+      .subscribe(() => {
+        this.router.navigate(['/accueil']);
+      }, (error: HttpErrorResponse) => {
+        this.err = true;
+        if (error.status == 401) {
+          this.erreur = "Erreur dans le login et/ou le mot de passe"
+        } else if (error.status == 0) {
+          this.erreur = "Probleme serveur"
+        }
+      })
+  }
+
+
+  recommer(){
+    this.ngOnInit();
   }
 
 }

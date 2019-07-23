@@ -48,7 +48,7 @@ export class DataService {
     return this.httpClient.get<any[]>(`${URL_BACKEND}collegues/photos`);
   }
 
-  authentifier(login: string, motDePasse: string): Observable<Login> {
+  login(login: string, motDePasse: string): Observable<Login> {
     return this.httpClient.post<Login>(`${URL_BACKEND}collegues/auth`, { json: true, body:{
         "login" : login,
         "motDePasse" : motDePasse

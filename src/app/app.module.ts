@@ -18,6 +18,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 
 const ROUTES: Routes = [
  
+  {path: 'connexion', component:ConnexionComponent},
   {path: 'accueil', component:AccueilComponent},
   {path: 'galerie', component:GalerieComponent},
   {path: 'apropos', component:AproposComponent},
