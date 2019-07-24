@@ -27,7 +27,7 @@ export class ConnexionComponent implements OnInit {
 
 
   connexion(login: string, motDePasse: string) {
-    this.authService.authentifier(this.login, this.motDePasse)
+    this.authService.authentifier(login, motDePasse)
       .subscribe(() => {
         this.router.navigate(['/accueil']);
       }, (error: HttpErrorResponse) => {

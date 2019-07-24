@@ -13,10 +13,10 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  authentifier(nomUtilisateur: string, motDePasse: string) {
-    return this.httpClient.post(URL_BACKEND + '/auth', {
-      "nomUtilisateur": nomUtilisateur,
-      "motDePasse": motDePasse
+  authentifier(login: string, motDePasse: string) {
+    return this.httpClient.post(URL_BACKEND + 'auth', {
+      "login": "amande",
+      "motDePasse": "amande"
     }, { withCredentials: true });
   }
 
