@@ -14,9 +14,9 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   authentifier(login: string, motDePasse: string) {
-    return this.httpClient.post(URL_BACKEND + 'auth', {
-      "login": "amande",
-      "motDePasse": "amande"
+    return this.httpClient.post(`${URL_BACKEND}auth`, {
+      "login": login,
+      "motDePasse": motDePasse
     }, { withCredentials: true });
   }
 
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   isLoggedIn(): Observable<Collegue> {
-    return this.httpClient.get<Collegue>(URL_BACKEND + '/me', { withCredentials: true })
+    return this.httpClient.get<Collegue>(`${URL_BACKEND}/me`, { withCredentials: true })
   }
 }
 

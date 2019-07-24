@@ -29,30 +29,30 @@ export class DataService {
   }
 
   rechercherParNom(nom: string): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${URL_BACKEND}collegues/?nomCollegue=${nom}`);
+    return this.httpClient.get<string[]>(`${URL_BACKEND}collegues/?nomCollegue=${nom}`, { withCredentials: true });
   }
  
   rechercherCollegueParMatricule(matricule: string): Observable<Collegue> {
-    return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`);
+    return this.httpClient.get<Collegue>(`${URL_BACKEND}collegues/${matricule}`, { withCredentials: true });
   }
 
   ajouterCollegue(collegue: Collegue): Observable<Collegue> {
-    return this.httpClient.post<Collegue>(`${URL_BACKEND}collegues`, collegue);
+    return this.httpClient.post<Collegue>(`${URL_BACKEND}collegues`, collegue, { withCredentials: true });
   }
 
   modifierCollegue(collegue: Collegue): Observable<Collegue> {
-    return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule}`, collegue);
+    return this.httpClient.patch<Collegue>(`${URL_BACKEND}collegues/${collegue.matricule}`, collegue, { withCredentials: true });
   }
 
   photosGallerie():Observable<any[]>{
-    return this.httpClient.get<any[]>(`${URL_BACKEND}collegues/photos`);
+    return this.httpClient.get<any[]>(`${URL_BACKEND}collegues/photos`, { withCredentials: true });
   }
 
   login(login: string, motDePasse: string): Observable<Login> {
     return this.httpClient.post<Login>(`${URL_BACKEND}collegues/auth`, { json: true, body:{
         "login" : login,
         "motDePasse" : motDePasse
-    } })
+    } }, { withCredentials: true })
 }
 
 
